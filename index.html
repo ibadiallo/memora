@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MEMORA — L’œuvre d’art de la modestie</title>
+<meta name="description" content="Memora — abayas et voiles haut de gamme. L’œuvre d’art de la modestie.">
+<meta property="og:title" content="MEMORA">
+<meta property="og:description" content="Unforgettable • High-end • Modestwear">
+<meta property="og:image" content="images/products/jannah-1.jpg">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,700;1,800&family=Montserrat:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d1a17;
+    --ink-2: #6f6862;
+    --ink-3: #a29a92;
+    --cream: #f5f2ed;
+    --sand: #f0ece5;
+    --line: #e2ddd7;
+    --white: #ffffff;
+    --serif: "Playfair Display", "Didot", "Bodoni 72", Georgia, serif;
+    --sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--cream); }
+  a, button { color: inherit; font: inherit; background: none; border: 0; text-decoration: none; cursor: pointer; }
+  img { display: block; max-width: 100%; }
+  :focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+  .caps { font-size: 9px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; }
+  .drawer .caps { font-size: 12px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: fixed; inset: 0 0 auto; z-index: 10; color: #fff;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: calc(22px + env(safe-area-inset-top, 0px)) 48px 22px;
+    transition: background .35s, color .35s, box-shadow .35s;
+  }
+  header.solid { background: rgba(255,255,255,.97); color: var(--ink); box-shadow: 0 1px 0 var(--line); }
+  .nav-left, .nav-right { display: flex; align-items: center; gap: 48px; }
+  .nav-right { justify-content: flex-end; gap: 30px; }
+  .logo { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 36px; letter-spacing: -.01em; }
+  .lang { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: .2em; }
+  .lang span { opacity: .5; transition: opacity .2s; }
+  .lang span.on { opacity: 1; }
+  .switch { width: 28px; height: 16px; border-radius: 10px; background: currentColor; opacity: .35 !important; position: relative; }
+  .lang-wrap { position: relative; display: flex; align-items: center; gap: 10px; }
+  .knob { position: absolute; top: 3px; left: 3px; width: 10px; height: 10px; border-radius: 50%; background: #fff; transition: transform .25s; pointer-events: none; }
+  .lang[data-lang="fr"] .knob { transform: translateX(12px); }
+  header.solid .knob { background: var(--ink); }
+  .icon { width: 18px; height: 18px; display: block; }
+  .menu-btn { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden;
+    display: grid; place-items: center; text-align: center; color: #fff;
+    background: linear-gradient(160deg, #d9bfa3, #b8926b);
+  }
+  .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.75); }
+  .hero-inner { position: relative; z-index: 1; padding: 0 24px; }
+  .hero h1 {
+    display: inline-block; font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(30px, 4.2vw, 60px); line-height: 1; white-space: nowrap; letter-spacing: .02em;
+    transform: scaleX(.75); color: transparent;
+    background: linear-gradient(120deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.25) 25%, rgba(255,255,255,.02) 50%, rgba(255,255,255,.25) 75%, rgba(255,255,255,.05) 100%);
+    background-size: 300% auto; -webkit-background-clip: text; background-clip: text;
+    -webkit-text-stroke: .2px rgba(255,255,255,.15); filter: drop-shadow(0 2px 4px rgba(0,0,0,.05));
+    animation: shine 10s linear infinite;
+  }
+  @keyframes shine { to { background-position: 300% center; } }
+  .tagline { margin-top: 48px; font-size: 12px; font-weight: 300; letter-spacing: .6em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+  .hero .cta { position: relative; isolation: isolate; overflow: hidden; display: inline-block; margin-top: 64px; padding: 20px 56px; font-size: 9px; letter-spacing: .5em; color: #fff; background: rgba(255,255,255,.05); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,.2); transition: color .7s; }
+  .hero .cta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #fff; transform: translateY(100%); transition: transform .7s ease-in-out; }
+  .hero .cta:hover { color: #000; }
+  .hero .cta:hover::before { transform: none; }
+
+  /* ---------- Collection ---------- */
+  .featured { padding: 160px 48px; }
+  .feat-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 96px; }
+  .eyebrow { display: block; margin-bottom: 16px; font-size: 9px; font-weight: 700; letter-spacing: .5em; text-transform: uppercase; opacity: .3; }
+  .feat-head .section-title { text-align: left; font-size: clamp(36px, 4.4vw, 60px); opacity: .9; }
+  .explore { padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,.05); font-size: 9px; font-weight: 700; letter-spacing: .4em; text-transform: uppercase; opacity: .4; transition: opacity .3s, border-color .3s; }
+  .explore:hover { opacity: 1; border-color: var(--ink); }
+  .featured .grid { padding: 0; }
+  .collection { padding: calc(128px + env(safe-area-inset-top, 0px)) 48px 96px; min-height: 100vh; }
+  .coll-title { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: clamp(36px, 3.4vw, 48px); margin-bottom: 16px; }
+  .collection .filters { justify-content: flex-start; gap: 32px; margin: 0 0 64px; }
+  .collection .filters button { font-size: 10px; letter-spacing: .2em; color: rgba(29,26,23,.6); }
+  .collection .filters button.on { color: #000; }
+  .collection .grid { grid-template-columns: repeat(4, 1fr); gap: 64px 32px; padding: 0; max-width: none; }
+  @media (max-width: 1280px) { .collection .grid { grid-template-columns: repeat(3, 1fr); } }
+  .section-title { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: clamp(34px, 4vw, 54px); text-align: center; }
+  .filters { display: flex; justify-content: center; gap: 40px; margin: 28px 0 64px; }
+  .filters button { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 6px; border-bottom: 1px solid transparent; }
+  .filters button.on { color: var(--ink); border-color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px 80px; padding: 0 34px; max-width: 1920px; margin: 0 auto; }
+  .card { display: block; }
+  .media { position: relative; aspect-ratio: 3 / 4; background: #e4d9cc; overflow: hidden; }
+  .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .7s ease; }
+  .media img.alt { opacity: 0; transform: scale(1.1); transition: opacity 1s, transform 1s; }
+  @media (hover: hover) { .card:hover .media img.alt { opacity: 1; transform: none; } }
+  .badge { position: absolute; top: 24px; left: 24px; z-index: 1; background: rgba(255,255,255,.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 8px 20px; font-size: 8px; font-weight: 700; letter-spacing: .4em; text-transform: uppercase; }
+  .card h3 { margin-top: 40px; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 24px; opacity: .8; }
+  .price { margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: .2em; opacity: .3; }
+
+  /* ---------- Pillars ---------- */
+  .pillars { background: var(--white); padding: 110px 24px 40px; }
+  .pillars-row { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1290px; margin: 0 auto; }
+  .pillar { padding: 12px 48px 24px; border-left: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; }
+  .pillar:first-child { border-left: 0; }
+  .pillar h3 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 31px; line-height: 1.18; color: #2f2b27; }
+  .pillar p { margin-top: 30px; font-size: 14px; font-weight: 300; line-height: 1.95; color: var(--ink-3); max-width: 34ch; }
+
+  /* ---------- Editorial carousel ---------- */
+  .editorial { background: radial-gradient(125% 125% at 50% 10%, #fff 40%, #f2efe8 68%, #d9d6cf 100%); padding: 120px 0 110px; text-align: center; overflow: hidden; }
+  .editorial .lead { margin: 18px auto 0; max-width: 60ch; font-size: 16px; line-height: 1.6; color: var(--ink-2); padding: 0 24px; }
+  .stage { position: relative; height: 640px; margin-top: 70px; perspective: 1400px; touch-action: pan-y; }
+  .slide {
+    position: absolute; left: 50%; top: 50%; width: 426px; aspect-ratio: 3 / 4;
+    border-radius: 34px; overflow: hidden; background: #e4d9cc;
+    transform: translate(-50%, -50%); transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .7s;
+    box-shadow: 0 30px 60px rgba(60,40,25,.18); opacity: 0; pointer-events: none;
+  }
+  .slide img { width: 100%; height: 100%; object-fit: cover; }
+  .slide .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 60px 22px 24px; text-align: left; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.45)); opacity: 0; transition: opacity .5s; }
+  .slide .cap strong { display: block; font-style: italic; font-weight: 500; font-size: 20px; }
+  .slide .cap span { display: block; margin-top: 10px; font-size: 16px; opacity: .85; }
+  .slide.center { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%); z-index: 3; }
+  .slide.center .cap { opacity: 1; }
+  .slide.prev { opacity: 1; z-index: 2; transform: translate(calc(-50% - 610px), -50%) rotateY(50deg) scale(.72); }
+  .slide.next { opacity: 1; z-index: 2; transform: translate(calc(-50% + 610px), -50%) rotateY(-50deg) scale(.72); }
+  .slide.prev, .slide.next { pointer-events: auto; cursor: pointer; }
+  .arrow { position: absolute; top: 50%; z-index: 5; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); display: grid; place-items: center; font-size: 20px; }
+  .arrow.l { left: 38px; } .arrow.r { right: 38px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--sand); padding: 140px 17px 60px; }
+  .foot { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .mark { width: 64px; height: 64px; object-fit: contain; object-position: left center; }
+  .foot .logo { display: block; margin-top: 18px; font-size: 40px; }
+  .foot .motto { margin-top: 36px; font-size: 10px; letter-spacing: .35em; text-transform: uppercase; color: var(--ink-3); }
+  .foot h4 { margin-top: 12px; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 10px; letter-spacing: .35em; text-transform: uppercase; }
+  .foot ul { list-style: none; margin-top: 44px; display: grid; gap: 22px; }
+  .foot ul a { font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-2); }
+  .foot ul a:hover { color: var(--ink); }
+  .foot ul.social a { font-weight: 600; color: var(--ink); }
+  .bottom { margin-top: 90px; padding-top: 50px; border-top: 1px solid var(--line); text-align: center; font-size: 9px; letter-spacing: .4em; color: var(--ink-3); }
+
+  /* ---------- Mobile drawer ---------- */
+  .drawer { position: fixed; inset: 0; z-index: 20; background: rgba(42,31,23,.96); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .drawer.open { opacity: 1; pointer-events: auto; }
+  .drawer .close { position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: 20px; font-size: 28px; }
+
+  /* ---------- Notre histoire ---------- */
+  .page[hidden] { display: none; }
+  #page-histoire { background: #fff; }
+  .h-hero { position: relative; height: 82vh; min-height: 480px; overflow: hidden; background: #5a3d26; color: #fff; }
+  .h-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .h-hero::after { content: ""; position: absolute; inset: 0; background: rgba(40,25,15,.35); }
+  .h-hero h1 { position: absolute; left: 42px; bottom: 100px; z-index: 1; font-weight: 300; font-size: clamp(20px, 2vw, 28px); letter-spacing: .32em; text-transform: uppercase; }
+  .story { padding: 14px 12px 40px; }
+  .banner { position: relative; height: calc(100vh - 24px); min-height: 460px; border-radius: 24px; overflow: hidden; background: #8a6a4e; color: #fff; }
+  .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .banner::after { content: ""; position: absolute; inset: 0; background: rgba(30,20,12,.45); }
+  .banner figcaption { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
+  .banner span { font-size: clamp(16px, 1.6vw, 26px); letter-spacing: .15em; text-transform: uppercase; opacity: .9; }
+  .banner strong { margin-top: 18px; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: clamp(34px, 4.4vw, 64px); line-height: 1.1; }
+  .text-block { display: grid; grid-template-columns: 380px minmax(0, 720px); justify-content: center; gap: 40px; padding: 90px 24px 120px; }
+  .text-block h2 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 36px; line-height: 1.15; text-align: right; }
+  .text-block p { font-size: 22px; line-height: 1.45; color: #3a3530; }
+  .text-block p + p { margin-top: 32px; }
+  .btn { display: inline-flex; gap: 14px; margin-top: 36px; padding: 18px 36px; border-radius: 3px; background: #1a1a1a; color: #fff; font-size: 20px; }
+  .btn:hover { background: #3a3530; }
+
+  /* ---------- Guide des tailles ---------- */
+  .sizes { background: #e7e5e1; color: #272522; padding: calc(128px + env(safe-area-inset-top, 0px)) 48px 96px; min-height: 100vh; }
+  .sizes > * { max-width: 768px; margin-left: auto; margin-right: auto; }
+  .sizes h1 { text-align: center; font-family: var(--serif); font-style: italic; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: clamp(36px, 4.4vw, 60px); line-height: 1.05; margin-bottom: 16px; }
+  .sizes .sub { text-align: center; font-size: 16px; opacity: .6; }
+  .table-card, .sg-block { margin-top: 48px; background: rgba(255,255,255,.7); border: 1px solid rgba(0,0,0,.1); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .table-card table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .table-card th { padding: 20px 24px; font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,.15); }
+  .table-card td { padding: 20px 24px; border-bottom: 1px solid rgba(0,0,0,.08); }
+  .table-card tr:last-child td { border-bottom: 0; }
+  .table-card tbody tr:hover { background: rgba(0,0,0,.02); }
+  .table-card th:first-child, .table-card td:first-child { text-align: left; }
+  .table-card th:nth-child(2), .table-card td:nth-child(2) { text-align: center; opacity: .7; }
+  .table-card th:last-child, .table-card td:last-child { text-align: right; opacity: .7; }
+  .table-card th:nth-child(2), .table-card th:last-child { opacity: 1; }
+  .table-card td:first-child { font-size: 18px; font-weight: 600; }
+  .note { padding: 16px 24px; border-top: 1px solid rgba(0,0,0,.08); font-size: 11px; font-style: italic; opacity: .4; }
+  .sg-block { padding: 32px; }
+  .sg-block h2 { margin-bottom: 8px; font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; opacity: .4; }
+  .sg-block h3 { margin-top: 12px; font-size: 16px; font-weight: 500; }
+  .sg-block p { margin-top: 12px; font-size: 14px; line-height: 1.65; opacity: .65; }
+  .sg-block p:last-child { font-style: italic; }
+  .tips { list-style: none; counter-reset: tip; margin-top: 20px; display: grid; gap: 16px; }
+  .tips li { counter-increment: tip; display: flex; gap: 12px; font-size: 14px; line-height: 1.65; opacity: .7; }
+  .tips li::before { content: counter(tip); flex-shrink: 0; width: 16px; height: 16px; margin-top: 3px; border: 1px solid rgba(0,0,0,.2); border-radius: 50%; display: grid; place-items: center; font-size: 9px; font-weight: 700; opacity: .6; }
+
+  @media (max-width: 860px) {
+    .h-hero h1 { left: 20px; bottom: 60px; }
+    .story { padding: 8px 8px 20px; }
+    .banner { height: 70vh; border-radius: 14px; }
+    .text-block { grid-template-columns: 1fr; gap: 24px; padding: 56px 16px 72px; }
+    .text-block h2 { text-align: left; font-size: 30px; }
+    .text-block p { font-size: 17px; }
+    .btn { font-size: 16px; padding: 16px 28px; }
+    .sizes { padding: calc(110px + env(safe-area-inset-top, 0px)) 16px 72px; }
+    .table-card th, .table-card td { padding: 16px 12px; }
+    .table-card th { font-size: 10px; letter-spacing: .1em; }
+    .table-card td { font-size: 14px; }
+    .sg-block { padding: 24px; }
+  }
+
+  /* ---------- Product page ---------- */
+  .pdp { display: grid; grid-template-columns: 8fr 4fr; padding-top: calc(96px + env(safe-area-inset-top, 0px)); min-height: 100vh; }
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 48px; align-content: start; }
+  .gallery div { aspect-ratio: 3 / 4; overflow: hidden; background: #e7e5e4; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; }
+  .info { position: sticky; top: 96px; align-self: start; padding: 64px; background: rgba(255,255,255,.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .info .kicker { display: block; margin-bottom: 16px; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; opacity: .5; }
+  .info h1 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 36px; margin-bottom: 16px; }
+  .info .pdp-price { font-size: 20px; font-weight: 300; opacity: .6; margin-bottom: 32px; }
+  .info .blk { margin-bottom: 48px; }
+  .info h3 { margin-bottom: 16px; font-size: 10px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; }
+  .info .desc { font-size: 14px; font-weight: 300; line-height: 1.65; opacity: .8; white-space: pre-line; }
+  .opts { display: flex; flex-wrap: wrap; gap: 12px; }
+  .opt { min-width: 40px; height: 40px; padding: 0 10px; border: 1px solid rgba(0,0,0,.1); font-size: 10px; letter-spacing: .1em; transition: all .2s; }
+  .opt.on { background: #000; color: #fff; border-color: #000; }
+  .opt.color { min-width: 64px; height: 32px; }
+  .opt:disabled { color: rgba(0,0,0,.3); cursor: not-allowed; background-image: linear-gradient(to right top, transparent calc(50% - .5px), rgba(0,0,0,.15) calc(50% - .5px), rgba(0,0,0,.15) calc(50% + .5px), transparent calc(50% + .5px)); }
+  .pqty { display: flex; align-items: center; gap: 16px; }
+  .pqty button { width: 40px; height: 40px; border: 1px solid rgba(0,0,0,.1); }
+  .pqty span { width: 40px; text-align: center; }
+  .buy { width: 100%; margin-bottom: 16px; padding: 20px; background: #000; color: #fff; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; transition: opacity .2s; }
+  .buy:hover { opacity: .9; }
+  .buy:disabled { opacity: .4; cursor: not-allowed; }
+  .acc { border-bottom: 1px solid rgba(0,0,0,.1); }
+  .acc details { border-top: 1px solid rgba(0,0,0,.1); padding: 16px 0; }
+  .acc summary { display: flex; justify-content: space-between; cursor: pointer; list-style: none; font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+  .acc summary::-webkit-details-marker { display: none; }
+  .acc summary::after { content: "+"; }
+  .acc details[open] summary::after { content: "−"; }
+  .acc details p, .acc details a { display: block; margin-top: 14px; font-size: 13px; font-weight: 300; line-height: 1.7; opacity: .8; white-space: pre-line; }
+  .acc details a { text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 1024px) {
+    .pdp { grid-template-columns: 1fr; }
+    .gallery { padding: 16px; }
+    .info { position: static; padding: 32px 20px 64px; }
+  }
+  @media (max-width: 760px) { .gallery { grid-template-columns: 1fr; } }
+
+  /* ---------- Search + cart ---------- */
+  .icon-btn { position: relative; }
+  .count { position: absolute; top: -7px; right: -9px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--ink); color: #fff; font-size: 9px; font-weight: 600; display: grid; place-items: center; }
+  .count[hidden] { display: none; }
+  header:not(.solid) .count { background: #fff; color: var(--ink); }
+  body.lock { overflow: hidden; }
+  .scrim { position: fixed; inset: 0; z-index: 30; background: rgba(30,25,20,.25); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .scrim.on { opacity: 1; pointer-events: auto; }
+  .search { position: fixed; inset: 0 0 auto; z-index: 40; background: #fff; color: var(--ink); padding-top: env(safe-area-inset-top, 0px); transform: translateY(-105%); transition: transform .35s ease; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+  .search.open { transform: none; }
+  .search-bar { display: flex; align-items: center; gap: 18px; padding: 22px 40px 22px 48px; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+  .search-bar .icon { width: 15px; height: 15px; }
+  .search-bar input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: inherit; font-size: 19px; font-weight: 300; color: var(--ink); }
+  .search-bar input::placeholder { color: var(--ink-3); }
+  .search-bar input::-webkit-search-cancel-button { display: none; }
+  .esc { display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-3); }
+  kbd { border: 1px solid var(--line); padding: 2px 6px; font: inherit; letter-spacing: .1em; }
+  .search-res { padding: 30px 48px 40px; max-height: 60vh; overflow: auto; }
+  .hint { font-size: 9px; letter-spacing: .4em; text-transform: uppercase; color: var(--ink-3); }
+  .res { display: grid; grid-template-columns: 52px 1fr auto; gap: 18px; align-items: center; width: 100%; padding: 12px 0; border-bottom: 1px solid var(--line); text-align: left; }
+  .res:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+  .th { aspect-ratio: 3 / 4; background: #e4d9cc; overflow: hidden; }
+  .th img { width: 100%; height: 100%; object-fit: cover; }
+  .res strong, .item h3 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 19px; }
+  .res small { display: block; margin-top: 4px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); }
+  .res .pr { font-size: 12px; letter-spacing: .15em; color: var(--ink-2); }
+  .hint + .res { margin-top: 14px; }
+  .cart { position: fixed; top: 0; right: 0; bottom: 0; z-index: 40; width: min(410px, 100vw); background: #fff; color: var(--ink); display: flex; flex-direction: column; padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px); transform: translateX(105%); transition: transform .35s ease; }
+  .cart.open { transform: none; }
+  .cart-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 22px 18px; border-bottom: 1px solid var(--line); }
+  .cart-head h2 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 13px; letter-spacing: .25em; text-transform: uppercase; }
+  .cart-head button { font-size: 24px; font-weight: 300; color: var(--ink-3); }
+  .cart-body { flex: 1; overflow: auto; padding: 0 22px; }
+  .empty { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; color: #bdb6ae; }
+  .empty svg { width: 30px; height: 30px; }
+  .empty p { font-size: 11px; letter-spacing: .35em; text-transform: uppercase; }
+  .item { display: grid; grid-template-columns: 72px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .item .pr { margin-top: 4px; font-size: 11px; letter-spacing: .18em; color: var(--ink-3); }
+  .item .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 14px; }
+  .item select { font: inherit; font-size: 12px; padding: 6px 8px; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+  .qty { display: flex; align-items: center; border: 1px solid var(--line); }
+  .qty button { width: 28px; height: 28px; }
+  .qty span { min-width: 20px; text-align: center; font-size: 13px; }
+  .rm { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+  .cart-foot { padding: 20px 22px; border-top: 1px solid var(--line); }
+  .cart-foot[hidden] { display: none; }
+  .total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+  .total strong { font-size: 15px; letter-spacing: .08em; }
+  .checkout { width: 100%; padding: 17px; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; }
+  .checkout:hover { background: #3a3530; }
+  .add { margin-top: 12px; font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-2); }
+  .card.flash .media { outline: 1px solid var(--ink); outline-offset: 8px; }
+  @media (max-width: 860px) {
+    .search-bar { padding: 18px 20px; }
+    .search-bar input { font-size: 16px; }
+    .esc span { display: none; }
+    .search-res { padding: 24px 20px 30px; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 60px 32px; }
+    .slide.prev { transform: translate(calc(-50% - 400px), -50%) rotateY(50deg) scale(.7); }
+    .slide.next { transform: translate(calc(-50% + 400px), -50%) rotateY(-50deg) scale(.7); }
+  }
+  @media (max-width: 860px) {
+    header { padding-left: 20px; padding-right: 20px; }
+    .nav-left .caps, .nav-right .caps, .nav-right .lang { display: none; }
+    .menu-btn { display: block; }
+    .logo { font-size: 28px; }
+    .hero h1 { white-space: normal; transform: none; font-size: 34px; line-height: 1.15; }
+    .hero h1 .dot { display: none; } .hero h1 .word { display: block; }
+    .tagline { letter-spacing: .32em; margin-top: 32px; }
+    .hero .cta { margin-top: 44px; padding: 18px 40px; }
+    .collection { padding: calc(110px + env(safe-area-inset-top, 0px)) 16px 72px; }
+    .collection .grid { grid-template-columns: repeat(2, 1fr); gap: 44px 14px; }
+    .featured { padding: 96px 16px; }
+    .feat-head { margin-bottom: 48px; gap: 16px; }
+    .featured .grid { padding: 0; }
+    .grid { padding: 0 16px; gap: 44px 14px; }
+    .badge { top: 12px; left: 12px; padding: 6px 12px; }
+    .card h3 { margin-top: 18px; font-size: 19px; }
+    .pillars-row { grid-template-columns: 1fr; }
+    .pillar { border-left: 0; border-top: 1px solid var(--line); padding: 40px 8px; }
+    .pillar:first-child { border-top: 0; }
+    .stage { height: 520px; }
+    .slide { width: 72vw; max-width: 340px; border-radius: 26px; }
+    .slide.prev { transform: translate(calc(-50% - 62vw), -50%) rotateY(45deg) scale(.7); }
+    .slide.next { transform: translate(calc(-50% + 62vw), -50%) rotateY(-45deg) scale(.7); }
+    .arrow.l { left: 12px; } .arrow.r { right: 12px; }
+    footer { padding-top: 80px; }
+    .foot { grid-template-columns: 1fr 1fr; gap: 56px 24px; }
+    .foot > div:first-child { grid-column: 1 / -1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero video { display: none; }
+    * { transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <nav class="nav-left">
+    <button class="menu-btn" aria-label="Menu" onclick="toggleDrawer(true)">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+    <a class="caps" href="#/collection" data-i18n="collection">Collection</a>
+    <a class="caps" href="#/notre-histoire" data-i18n="story">Notre histoire</a>
+  </nav>
+  <a class="logo" href="#/">MEMORA</a>
+  <div class="nav-right">
+    <button class="lang" data-lang="fr" onclick="toggleLang()" aria-label="Langue">
+      <span class="en">EN</span><span class="lang-wrap"><span class="switch"></span><span class="knob"></span></span><span class="fr on">FR</span>
+    </button>
+    <a class="caps" href="#/size-guide" data-i18n="sizes">Guide tailles</a>
+    <button class="icon-btn" aria-label="Rechercher" onclick="openSearch()">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+    </button>
+    <button class="icon-btn" aria-label="Panier" onclick="openCart()">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="count" id="count" hidden>0</span>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim" onclick="closeAll()"></div>
+
+<div class="search" id="search" role="dialog" aria-label="Recherche">
+  <div class="search-bar">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+    <input id="q" type="search" autocomplete="off" data-i18n-ph="searchPh" placeholder="Rechercher un produit, une collection…">
+    <button class="esc" onclick="closeAll()"><span data-i18n="close">Fermer</span><kbd>ESC</kbd></button>
+  </div>
+  <div class="search-res" id="results"></div>
+</div>
+
+<aside class="cart" id="cart" aria-label="Panier">
+  <div class="cart-head">
+    <h2 data-i18n="myCart">Mon panier</h2>
+    <button aria-label="Fermer" onclick="closeAll()">&times;</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot">
+    <div class="total"><span data-i18n="total">Total</span><strong id="cartTotal"></strong></div>
+    <button class="checkout" onclick="checkout()" data-i18n="checkout">Commander sur WhatsApp</button>
+  </div>
+</aside>
+
+<div class="drawer" id="drawer">
+  <button class="close" aria-label="Fermer" onclick="toggleDrawer(false)">&times;</button>
+  <a class="caps" href="#/collection" data-i18n="collection" onclick="toggleDrawer(false)">Collection</a>
+  <a class="caps" href="#/notre-histoire" data-i18n="story" onclick="toggleDrawer(false)">Notre histoire</a>
+  <a class="caps" href="#/size-guide" data-i18n="sizes" onclick="toggleDrawer(false)">Guide tailles</a>
+  <button class="lang" data-lang="fr" onclick="toggleLang()">
+    <span class="en">EN</span><span class="lang-wrap"><span class="switch"></span><span class="knob"></span></span><span class="fr on">FR</span>
+  </button>
+</div>
+
+<main id="page-home" class="page">
+  <section class="hero">
+    <video autoplay muted loop playsinline preload="auto" src="https://lpxnctyhfoxnuxwqdanb.supabase.co/storage/v1/object/public/images/hero%20memora.mp4"></video>
+    <div class="hero-inner">
+      <h1><span class="word">Unforgettable</span><span class="dot"> • </span><span class="word">High-end</span><span class="dot"> • </span><span class="word">Modestwear</span></h1>
+      <p class="tagline" data-i18n="tagline">L’œuvre d’art de la modestie.</p>
+      <a class="cta caps" href="#/collection" data-i18n="cta">La collection</a>
+    </div>
+  </section>
+
+  <!-- PIECES SIGNATURES -->
+  <section class="featured">
+    <div class="feat-head">
+      <div><span class="eyebrow">Memora</span><h2 class="section-title" data-i18n="signature">Pièces Signatures</h2></div>
+      <a class="explore" href="#/collection" data-i18n="exploreAll">Tout explorer</a>
+    </div>
+    <div class="grid" id="featGrid"></div>
+  </section>
+
+  <!-- PILLARS / NOTRE HISTOIRE -->
+  <section class="pillars" id="histoire">
+    <div class="pillars-row">
+      <div class="pillar">
+        <h3 data-i18n="p1t">I. L’Excellence du Détail</h3>
+        <p data-i18n="p1">Des pièces de caractère issues d’une recherche minutieuse : coupes fluides, finitions haute couture et étoffes au tombé impeccable.</p>
+      </div>
+      <div class="pillar">
+        <h3 data-i18n="p2t">II. L’Héritage de la Qualité</h3>
+        <p data-i18n="p2">Créer pour durer, loin des modes éphémères. Des matières nobles pour une garde-robe intemporelle, entre éclat et distinction.</p>
+      </div>
+      <div class="pillar">
+        <h3 data-i18n="p3t">III. L’Expérience Memora</h3>
+        <p data-i18n="p3">Chaque commande est une attention particulière. De votre écrin à la réception, un service fluide à la hauteur de vos exigences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL CAROUSEL -->
+  <section class="editorial">
+    <h2 class="section-title" data-i18n="edTitle">Collections, promos et annonces</h2>
+    <p class="lead" data-i18n="edLead">Nouvelles pièces, offres du moment et coups de cœur de la saison.</p>
+    <div class="stage" id="stage">
+      <button class="arrow l" aria-label="Précédent" onclick="go(-1)">&larr;</button>
+      <button class="arrow r" aria-label="Suivant" onclick="go(1)">&rarr;</button>
+    </div>
+  </section>
+</main>
+
+<!-- ============ COLLECTION ============ -->
+<main id="page-collection" class="page" hidden>
+  <section class="collection" id="collection">
+    <h1 class="coll-title" data-i18n="collTitle">La Collection</h1>
+    <div class="filters">
+      <button class="on" data-filter="all" data-i18n="all">Toutes les pièces</button>
+      <button data-filter="Abaya" data-i18n="abayas">Abayas</button>
+      <button data-filter="Voile" data-i18n="voiles">Voiles</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<!-- ============ PRODUCT ============ -->
+<main id="page-product" class="page" hidden><div class="pdp" id="pdp"></div></main>
+
+<!-- ============ NOTRE HISTOIRE ============ -->
+<main id="page-histoire" class="page" hidden>
+  <section class="h-hero">
+    <img src="https://lpxnctyhfoxnuxwqdanb.supabase.co/storage/v1/object/public/images/hero.jpg" alt="">
+    <h1 data-i18n="hHero">Notre histoire</h1>
+  </section>
+
+  <div class="story">
+    <figure class="banner">
+      <img src="https://lpxnctyhfoxnuxwqdanb.supabase.co/storage/v1/object/public/images/notre-histoire-1.jpg" alt="">
+      <figcaption><span data-i18n="k1">Histoire</span><strong data-i18n="b1">Memora est née d’un désir simple</strong></figcaption>
+    </figure>
+    <div class="text-block">
+      <h2 data-i18n="t1">Histoire de la marque</h2>
+      <div>
+        <p data-i18n="t1a"></p>
+        <p data-i18n="t1b"></p>
+        <p data-i18n="t1c"></p>
+        <a class="btn" href="#/collection"><span data-i18n="explore">Explorer la collection</span> ↗</a>
+      </div>
+    </div>
+
+    <figure class="banner">
+      <img src="https://lpxnctyhfoxnuxwqdanb.supabase.co/storage/v1/object/public/images/notre-histoire-2.jpg" alt="">
+      <figcaption><span data-i18n="k2">Vision</span><strong data-i18n="b2">La qualité comme évidence</strong></figcaption>
+    </figure>
+    <div class="text-block">
+      <h2 data-i18n="t2">Vision de la marque</h2>
+      <div>
+        <p data-i18n="t2a"></p>
+        <p data-i18n="t2b"></p>
+        <a class="btn" href="#/collection"><span data-i18n="explore">Explorer la collection</span> ↗</a>
+      </div>
+    </div>
+
+    <figure class="banner">
+      <img src="https://lpxnctyhfoxnuxwqdanb.supabase.co/storage/v1/object/public/images/notre_histoire_3.jpg" alt="">
+      <figcaption><span data-i18n="k3">Mission</span><strong data-i18n="b3">Des créations mémorables</strong></figcaption>
+    </figure>
+    <div class="text-block">
+      <h2 data-i18n="t3">Mission de la marque</h2>
+      <div>
+        <p data-i18n="t3a"></p>
+        <a class="btn" href="#/collection"><span data-i18n="explore">Explorer la collection</span> ↗</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============ GUIDE DES TAILLES ============ -->
+<main id="page-sizes" class="page sizes" hidden>
+  <h1 data-i18n="sgTitle">Guide des tailles</h1>
+  <p class="sub" data-i18n="sgSub"></p>
+
+  <div class="table-card">
+    <table>
+      <thead><tr><th data-i18n="c1"></th><th data-i18n="c2"></th><th data-i18n="c3"></th></tr></thead>
+      <tbody>
+        <tr><td>52</td><td>132 cm</td><td>1m50 – 1m55</td></tr>
+        <tr><td>54</td><td>137 cm</td><td>1m56 – 1m61</td></tr>
+        <tr><td>56</td><td>142 cm</td><td>1m62 – 1m67</td></tr>
+        <tr><td>58</td><td>147 cm</td><td>1m68 – 1m73</td></tr>
+        <tr><td>60</td><td>152 cm</td><td>1m74 – 1m79</td></tr>
+        <tr><td>62</td><td>157 cm</td><td>1m80 – 1m85</td></tr>
+        <tr><td>64</td><td>162 cm</td><td>+ 1m85</td></tr>
+      </tbody>
+    </table>
+    <p class="note" data-i18n="sgNote"></p>
+  </div>
+
+  <section class="sg-block">
+    <h2>FAQ</h2>
+    <h3 data-i18n="faqQ"></h3>
+    <p data-i18n="faqA1"></p>
+    <p data-i18n="faqA2"></p>
+  </section>
+
+  <section class="sg-block">
+    <h2 data-i18n="tipsTitle"></h2>
+    <ol class="tips">
+      <li data-i18n="tip1"></li>
+      <li data-i18n="tip2"></li>
+      <li data-i18n="tip3"></li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <img class="mark" src="images/logo.png" alt="Memora logo">
+      <a class="logo" href="#/">MEMORA</a>
+      <p class="motto" data-i18n="motto">L’essence du luxe modeste.</p>
+    </div>
+    <div>
+      <h4 data-i18n="shop">Boutique</h4>
+      <ul>
+        <li><a href="#/collection" data-i18n="collTitle">La Collection</a></li>
+        <li><a href="#/collection?type=Abaya" data-i18n="abayas">Abayas</a></li>
+        <li><a href="#/collection?type=Voile" data-i18n="voiles">Voiles</a></li>
+        <li><a href="#/size-guide" data-i18n="sizeGuide">Guide des tailles</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="about">À propos</h4>
+      <ul>
+        <li><a href="#/notre-histoire" data-i18n="story">Notre histoire</a></li>
+        <li><a class="wa-contact" href="#" target="_blank" rel="noopener" data-i18n="contact">Nous contacter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="social">Nos réseaux</h4>
+      <ul class="social">
+        <li><a href="https://www.instagram.com/memora.sn" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@memorasn" target="_blank" rel="noopener">TikTok</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="bottom">MEMORA</p>
+</footer>
+
+<script>
+/* ============ EDIT HERE ============ */
+const WHATSAPP = "221781042922";
+
+// Supabase (Project Settings → API). The anon key is public by design: the tables are read-only for visitors.
+// Leave both empty to use the built-in data below instead.
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+
+// Built-in data, used when Supabase isn't configured or can't be reached.
+// Images default to images/products/<slug>-1.jpg (main) and <slug>-2.jpg (hover).
+// Optional per product: image, hover, gallery, sizes, colors, inStock (false = "Rupture de stock"), desc: { fr, en }, featured
+let PRODUCTS = [
+  { slug: "voile-kheira", name: "Voile Kheira", type: "Voile", price: 6000 },
+  { slug: "jannah",       name: "Jannah",       type: "Abaya", price: 65000,
+    gallery: ["images/products/jannah-1.jpg", "images/products/jannah-3.jpg"], sizes: [54], colors: ["Jaune ambré"], inStock: false,
+    desc: {
+      fr: "Découvrez l’Abaya Jannah, une pièce rare et exclusive dont le nom évoque le Paradis.\nConfectionnée dans un tissu noble aux reflets dorés et au tombé fluide, elle est ornée d’une guipure de dentelle blanche florale qui rappelle la pureté et la beauté d’un jardin céleste. Sa coupe élégante et ses manches larges en font une tenue d’exception pour vos événements les plus marquants.",
+      en: "Discover the Jannah Abaya, a rare and exclusive piece whose name evokes Paradise.\nMade from a noble fabric with golden highlights and a fluid drape, it is adorned with white floral lace guipure that recalls the purity and beauty of a heavenly garden. Its elegant cut and wide sleeves make it an exceptional outfit for your most memorable occasions."
+    } },
+  { slug: "that-girl",    name: "That Girl",    type: "Abaya", price: 29900 },
+  { slug: "salama",       name: "Salama",       type: "Abaya", price: 35000 },
+  { slug: "princess",     name: "Princess",     type: "Abaya", price: 29900 },
+  { slug: "nafis",        name: "Nafis",        type: "Abaya", price: 30000 },
+  { slug: "zahira",       name: "Zahira",       type: "Abaya", price: 65000 },
+  { slug: "floral",       name: "Floral",       type: "Abaya", price: 149000 },
+  { slug: "eden",         name: "Eden",         type: "Abaya", price: 29900 },
+  { slug: "evy",          name: "Evy",          type: "Abaya", price: 35000 },
+];
+
+// Text of the product page accordions (same for every product). Leave "" to hide one.
+let INFO = {
+  care:     { fr: "", en: "" },
+  delivery: { fr: "", en: "" },
+};
+
+let EDITORIAL = [
+  { image: "images/editorial/1.jpg", title: "MEMORA", credit: "Photo by: MEMORA" },
+  { image: "images/editorial/2.jpg", title: "MEMORA", credit: "Photo by: MEMORA" },
+  { image: "images/editorial/3.jpg", title: "MEMORA", credit: "Photo by: MEMORA" },
+  { image: "images/editorial/4.jpg", title: "MEMORA", credit: "Photo by: MEMORA" },
+];
+/* =================================== */
+
+const T = {
+  fr: { collection:"Collection", story:"Notre histoire", sizes:"Guide tailles", tagline:"L’œuvre d’art de la modestie.", cta:"La collection",
+        collTitle:"La Collection", all:"Toutes les pièces", abayas:"Abayas", voiles:"Voiles",
+        p1t:"I. L’Excellence du Détail", p1:"Des pièces de caractère issues d’une recherche minutieuse : coupes fluides, finitions haute couture et étoffes au tombé impeccable.",
+        p2t:"II. L’Héritage de la Qualité", p2:"Créer pour durer, loin des modes éphémères. Des matières nobles pour une garde-robe intemporelle, entre éclat et distinction.",
+        p3t:"III. L’Expérience Memora", p3:"Chaque commande est une attention particulière. De votre écrin à la réception, un service fluide à la hauteur de vos exigences.",
+        edTitle:"Collections, promos et annonces", edLead:"Nouvelles pièces, offres du moment et coups de cœur de la saison.",
+        motto:"L’essence du luxe modeste.", shop:"Boutique", sizeGuide:"Guide des tailles", about:"À propos", contact:"Nous contacter", social:"Nos réseaux",
+        order:(n,p)=>`Bonjour Memora, je suis intéressée par ${n} (${p}).`, hello:"Bonjour Memora !", sizesMsg:"Bonjour Memora, pouvez-vous m’envoyer le guide des tailles ?",
+        hHero:"Notre histoire", k1:"Histoire", b1:"Memora est née d’un désir simple", t1:"Histoire de la marque",
+        t1a:"Memora est née d’un désir simple : créer une marque qui incarne à la fois modernité, rareté et qualité. Chaque pièce de Memora est pensée pour durer, pour marquer les esprits et offrir à ceux qui la portent une élégance rare et raffinée.",
+        t1b:"Nous avons mis la qualité au cœur de notre démarche, car c’est elle qui fait la différence, c’est elle qui résiste au temps.",
+        t1c:"Choisir Memora, c’est choisir la rareté, la modernité et la qualité. Ce qui reste, c’est ce qui a du sens.",
+        explore:"Explorer la collection", k2:"Vision", b2:"La qualité comme évidence", t2:"Vision de la marque",
+        t2a:"Nous imaginons un monde où la qualité n’est pas un luxe, mais une évidence. Où chaque pièce que vous portez vous rappelle que vous êtes unique, digne de ce qui dure, digne de ce qui fait impression.",
+        t2b:"Notre ambition ? Créer une marque qui n’est pas juste une mode, mais une promesse. La promesse que ce que vous portez est plus qu’un vêtement : c’est un héritage. Un héritage qui traverse le temps, qui vous accompagne dans votre quotidien, et qui, au-delà de la mode, devient une partie de vous.",
+        k3:"Mission", b3:"Des créations mémorables", t3:"Mission de la marque",
+        t3a:"Notre mission est claire : offrir des créations qui ne se font pas oublier, qui marquent, qui frappent, qui se ressentent. Nos pièces sont pensées pour durer, pour être vues, pour rester gravées dans les mémoires. Notre but, c’est de célébrer ce qui perdure, ce qui se distingue et ce qui mérite d’être vu.",
+        sgTitle:"Guide des tailles", sgSub:"Trouvez la taille qui correspond à votre morphologie",
+        c1:"Taille émiratie", c2:"Longueur abaya", c3:"Taille de la personne",
+        sgNote:"* La longueur de l’abaya correspond aux mensurations de l’épaule aux pieds.",
+        faqQ:"La largeur est-elle la même pour chaque taille ?",
+        faqA1:"Cela dépend de la coupe de l’abaya. Vous pourrez retrouver la coupe de chaque modèle sur la fiche produit correspondante.",
+        faqA2:"Coupe cloche ou ample : la tenue convient à toutes les morphologies.",
+        tipsTitle:"Conseils de style",
+        tip1:"Si vous souhaitez porter votre abaya avec des talons, il est recommandé de choisir une taille au-dessus de celle indiquée.",
+        tip2:"Si vous préférez une abaya légèrement plus longue, optez également pour une taille au-dessus.",
+        tip3:"En cas de poitrine importante, merci d’en tenir compte lors du choix de votre taille.",
+        signature:"Pièces Signatures", exploreAll:"Tout explorer",
+        color:"Couleur", qty:"Quantité", soldOut:"Rupture de stock", care:"Conseils d’entretien", delivery:"Livraison & retours", seeSizes:"Voir le guide des tailles →",
+        searchPh:"Rechercher un produit, une collection…", close:"Fermer", typeToSearch:"Commencez à taper pour rechercher",
+        results:n => `${n} résultat${n > 1 ? "s" : ""}`, noResults:q => `Aucun résultat pour « ${q} »`,
+        myCart:"Mon panier", emptyCart:"Panier vide", total:"Total", checkout:"Commander sur WhatsApp",
+        size:"Taille", remove:"Retirer", add:"Ajouter au panier",
+        orderIntro:"Bonjour Memora, je souhaite commander :", orderSize:"taille", orderTotal:"Total",
+ },
+  en: { collection:"Collection", story:"Our story", sizes:"Size guide", tagline:"The art of modesty.", cta:"The collection",
+        collTitle:"The Collection", all:"All pieces", abayas:"Abayas", voiles:"Scarves",
+        p1t:"I. Excellence in Detail", p1:"Pieces of character born from careful research: fluid cuts, couture finishes and fabrics that drape beautifully.",
+        p2t:"II. A Legacy of Quality", p2:"Made to last, far from passing trends. Noble materials for a timeless wardrobe, radiant and refined.",
+        p3t:"III. The Memora Experience", p3:"Every order receives special care. From packaging to delivery, a seamless service that meets your standards.",
+        edTitle:"Collections, offers and news", edLead:"New pieces, current offers and this season’s favourites.",
+        motto:"The essence of modest luxury.", shop:"Shop", sizeGuide:"Size guide", about:"About", contact:"Contact us", social:"Follow us",
+        order:(n,p)=>`Hello Memora, I’m interested in ${n} (${p}).`, hello:"Hello Memora!", sizesMsg:"Hello Memora, could you send me the size guide?",
+        hHero:"Our story", k1:"Story", b1:"Memora was born from a simple wish", t1:"Our brand story",
+        t1a:"Memora was born from a simple wish: to create a brand that embodies modernity, rarity and quality all at once. Every Memora piece is designed to last, to leave an impression and to give those who wear it a rare, refined elegance.",
+        t1b:"We put quality at the heart of everything we do, because it is what makes the difference, and what stands the test of time.",
+        t1c:"Choosing Memora means choosing rarity, modernity and quality. What lasts is what has meaning.",
+        explore:"Explore the collection", k2:"Vision", b2:"Quality as a given", t2:"Our vision",
+        t2a:"We imagine a world where quality is not a luxury but a given. Where every piece you wear reminds you that you are unique, worthy of what lasts, worthy of what makes an impression.",
+        t2b:"Our ambition? To build a brand that is not just a trend but a promise. The promise that what you wear is more than clothing: it is a legacy. A legacy that stands the test of time, accompanies you every day and, beyond fashion, becomes part of who you are.",
+        k3:"Mission", b3:"Memorable creations", t3:"Our mission",
+        t3a:"Our mission is clear: to offer creations that are not forgotten, that make an impact, that are felt. Our pieces are made to last, to be seen, to stay in people’s memories. Our goal is to celebrate what endures, what stands out and what deserves to be seen.",
+        sgTitle:"Size guide", sgSub:"Find the size that fits your body",
+        c1:"Emirati size", c2:"Abaya length", c3:"Your height",
+        sgNote:"* Abaya length is measured from shoulder to feet.",
+        faqQ:"Is the width the same for every size?",
+        faqA1:"It depends on the cut of the abaya. You’ll find the cut of each style on its product page.",
+        faqA2:"Bell or loose cut: the outfit suits every body type.",
+        tipsTitle:"Style tips",
+        tip1:"If you plan to wear your abaya with heels, we recommend choosing one size up.",
+        tip2:"If you prefer a slightly longer abaya, also go one size up.",
+        tip3:"If you have a larger bust, please take it into account when choosing your size.",
+        signature:"Signature Pieces", exploreAll:"Explore all",
+        color:"Colour", qty:"Quantity", soldOut:"Out of stock", care:"Care instructions", delivery:"Delivery & returns", seeSizes:"See the size guide →",
+        searchPh:"Search for a product or collection…", close:"Close", typeToSearch:"Start typing to search",
+        results:n => `${n} result${n > 1 ? "s" : ""}`, noResults:q => `No results for “${q}”`,
+        myCart:"My bag", emptyCart:"Your bag is empty", total:"Total", checkout:"Order on WhatsApp",
+        size:"Size", remove:"Remove", add:"Add to bag",
+        orderIntro:"Hello Memora, I’d like to order:", orderSize:"size", orderTotal:"Total",
+ }
+};
+let lang = "fr", filter = "all", current = 0;
+
+const fmt = n => n.toLocaleString("en-US") + " CFA";
+const wa = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+const hideBroken = img => img.onerror = () => img.remove();
+const imgMain = p => p.image || `images/products/${p.slug}-1.jpg`;
+const imgHover = p => p.hover || `images/products/${p.slug}-2.jpg`;
+
+function renderGrid() {
+  const feat = PRODUCTS.filter(p => p.featured);
+  fillGrid(document.getElementById("featGrid"), (feat.length ? feat : PRODUCTS).slice(0, 6));
+  fillGrid(document.getElementById("grid"), PRODUCTS.filter(p => filter === "all" || p.type === filter));
+}
+function fillGrid(grid, list) {
+  grid.innerHTML = "";
+  list.forEach(p => {
+    const a = document.createElement("a");
+    a.className = "card"; a.href = "#/product/" + p.slug;
+    a.innerHTML = `
+      <div class="media">
+        <span class="badge">${p.type === "Voile" ? T[lang].voiles : p.name}</span>
+        <img src="${imgMain(p)}" alt="${p.name}" loading="lazy">
+        <img class="alt" src="${imgHover(p)}" alt="" loading="lazy">
+      </div>
+      <h3>${p.name}</h3>
+      <p class="price">${fmt(p.price)}</p>`;
+    a.querySelectorAll("img").forEach(hideBroken);
+    grid.appendChild(a);
+  });
+}
+
+function setFilter(f) {
+  filter = f;
+  document.querySelectorAll(".filters button").forEach(b => b.classList.toggle("on", b.dataset.filter === f));
+  renderGrid();
+}
+document.querySelectorAll(".filters button").forEach(b => b.onclick = () => setFilter(b.dataset.filter));
+
+function buildCarousel() {
+  const stage = document.getElementById("stage");
+  stage.querySelectorAll(".slide").forEach(x => x.remove());
+  current = 0;
+  EDITORIAL.forEach((s, i) => {
+    const d = document.createElement("div");
+    d.className = "slide";
+    d.innerHTML = `<img src="${s.image}" alt="${s.title}"><div class="cap"><strong>${s.title}</strong><span>${s.credit}</span></div>`;
+    hideBroken(d.querySelector("img"));
+    d.onclick = () => { if (d.classList.contains("prev")) go(-1); if (d.classList.contains("next")) go(1); };
+    stage.appendChild(d);
+  });
+  layout();
+  if (stage.dataset.bound) return;
+  stage.dataset.bound = "1";
+  let x0 = null;
+  stage.addEventListener("touchstart", e => x0 = e.touches[0].clientX, { passive: true });
+  stage.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    x0 = null;
+  });
+}
+function layout() {
+  const slides = document.querySelectorAll(".slide"), n = slides.length;
+  slides.forEach((s, i) => {
+    s.className = "slide" +
+      (i === current ? " center" : i === (current - 1 + n) % n ? " prev" : i === (current + 1) % n ? " next" : "");
+  });
+}
+function go(dir) { current = (current + dir + EDITORIAL.length) % EDITORIAL.length; layout(); }
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = T[lang][el.dataset.i18n]);
+  document.querySelectorAll(".lang").forEach(b => {
+    b.dataset.lang = lang;
+    b.querySelector(".fr").classList.toggle("on", lang === "fr");
+    b.querySelector(".en").classList.toggle("on", lang === "en");
+  });
+  document.querySelectorAll(".wa-sizes").forEach(a => a.href = wa(T[lang].sizesMsg));
+  document.querySelectorAll(".wa-contact, .wa-bag").forEach(a => a.href = wa(T[lang].hello));
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = T[lang][el.dataset.i18nPh]);
+  renderGrid(); renderCart(); renderResults();
+  if (pdp && !$("page-product").hidden) renderProduct(pdp.slug);
+}
+function toggleLang() { lang = lang === "fr" ? "en" : "fr"; applyLang(); }
+function toggleDrawer(open) { document.getElementById("drawer").classList.toggle("open", open); }
+
+const header = document.getElementById("top");
+function onScroll() {
+  const page = document.querySelector(".page:not([hidden])");
+  const hero = page && page.querySelector(".hero, .h-hero");
+  header.classList.toggle("solid", !hero || window.scrollY > hero.offsetHeight - 90);
+}
+window.addEventListener("scroll", onScroll, { passive: true });
+
+// Routes: #/ (home), #/collection, #/notre-histoire, #/size-guide
+function route() {
+  const h = location.hash;
+  const slug = (h.match(/^#\/product\/([\w-]+)/) || [])[1];
+  const page = slug && prod(slug) ? "product" : h.startsWith("#/notre-histoire") ? "histoire" : h.startsWith("#/size-guide") ? "sizes" : h.startsWith("#/collection") ? "collection" : "home";
+  if (page === "product") renderProduct(slug);
+  document.querySelectorAll(".page").forEach(p => p.hidden = p.id !== "page-" + page);
+  if (page === "collection") { const m = h.match(/type=(Abaya|Voile)/); setFilter(m ? m[1] : "all"); }
+  if (page !== "product") document.title = "MEMORA — L’œuvre d’art de la modestie";
+  window.scrollTo({ top: 0, behavior: "instant" });
+  onScroll();
+}
+window.addEventListener("hashchange", route);
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#/"]');
+  if (a && a.getAttribute("href") === location.hash) { e.preventDefault(); route(); }
+});
+document.querySelectorAll(".h-hero img, .banner img").forEach(hideBroken);
+
+/* ---------- Overlays ---------- */
+const $ = id => document.getElementById(id);
+function closeAll() {
+  $("search").classList.remove("open"); $("cart").classList.remove("open");
+  $("scrim").classList.remove("on"); document.body.classList.remove("lock");
+}
+function showScrim() { $("scrim").classList.add("on"); document.body.classList.add("lock"); }
+function openSearch() { closeAll(); toggleDrawer(false); $("search").classList.add("open"); showScrim(); setTimeout(() => $("q").focus(), 50); }
+function openCart() { closeAll(); toggleDrawer(false); $("cart").classList.add("open"); showScrim(); }
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeAll(); });
+
+/* ---------- Search ---------- */
+const norm = t => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function renderResults() {
+  const q = $("q").value.trim(), box = $("results");
+  if (!q) { box.innerHTML = `<p class="hint">${T[lang].typeToSearch}</p>`; return; }
+  const hits = PRODUCTS.filter(p => norm(p.name + " " + p.type + " " + (p.type === "Voile" ? "voiles scarves" : "abayas")).includes(norm(q)));
+  box.innerHTML = `<p class="hint">${hits.length ? T[lang].results(hits.length) : T[lang].noResults(q)}</p>`;
+  hits.forEach(p => {
+    const b = document.createElement("button");
+    b.className = "res";
+    b.innerHTML = `<div class="th"><img src="${imgMain(p)}" alt=""></div>
+      <div><strong>${p.name}</strong><small>${p.type === "Voile" ? T[lang].voiles : T[lang].abayas}</small></div>
+      <span class="pr">${fmt(p.price)}</span>`;
+    hideBroken(b.querySelector("img"));
+    b.onclick = () => showProduct(p.slug);
+    box.appendChild(b);
+  });
+}
+$("q").addEventListener("input", renderResults);
+function showProduct(slug) { closeAll(); location.hash = "#/product/" + slug; }
+
+/* ---------- Cart (saved in this browser) ---------- */
+const SIZES = [52, 54, 56, 58, 60, 62, 64];
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem("memora-cart")) || []; } catch (e) { cart = []; }
+cart = cart.filter(i => PRODUCTS.some(p => p.slug === i.slug));
+function saveCart() { try { localStorage.setItem("memora-cart", JSON.stringify(cart)); } catch (e) {} }
+const prod = slug => PRODUCTS.find(p => p.slug === slug);
+function mergeCart() {
+  const out = [];
+  cart.forEach(i => { const m = out.find(o => o.slug === i.slug && o.size === i.size && o.color === i.color); m ? m.qty += i.qty : out.push(i); });
+  cart = out;
+}
+const sizesOf = p => p.sizes || (p.type === "Abaya" ? SIZES : []);
+function addToCart(slug, size = null, qty = 1, color = null) {
+  cart.push({ slug, size, qty, color });
+  mergeCart(); saveCart(); renderCart(); openCart();
+}
+
+/* ---------- Product page ---------- */
+let pdp = null; // { slug, size, color, qty }
+function renderProduct(slug) {
+  const p = prod(slug), L = T[lang];
+  if (!pdp || pdp.slug !== slug) pdp = { slug, size: sizesOf(p)[0] ?? null, color: (p.colors || [])[0] ?? null, qty: 1 };
+  const inStock = p.inStock !== false;
+  const gallery = p.gallery && p.gallery.length ? p.gallery : [imgMain(p), imgHover(p)];
+  const info = [
+    INFO.care[lang] && `<details><summary>${L.care}</summary><p>${INFO.care[lang]}</p></details>`,
+    `<details><summary>${L.sizeGuide}</summary><a href="#/size-guide">${L.seeSizes}</a></details>`,
+    INFO.delivery[lang] && `<details><summary>${L.delivery}</summary><p>${INFO.delivery[lang]}</p></details>`,
+  ].filter(Boolean).join("");
+  $("pdp").innerHTML = `
+    <div class="gallery">${gallery.map((g, i) => `<div><img src="${g}" alt="${p.name.toUpperCase()} ${i}" ${i ? 'loading="lazy"' : ""}></div>`).join("")}</div>
+    <div class="info">
+      <span class="kicker">${p.name}</span>
+      <h1>${p.name.toUpperCase()}</h1>
+      <p class="pdp-price">${fmt(p.price)}</p>
+      ${p.desc && p.desc[lang] ? `<div class="blk"><h3 style="opacity:.5">Description</h3><p class="desc">${p.desc[lang]}</p></div>` : ""}
+      ${sizesOf(p).length ? `<div class="blk"><h3>${L.size}</h3><div class="opts">${sizesOf(p).map(z => `<button class="opt sz ${z === pdp.size ? "on" : ""}" data-v="${z}">${z}</button>`).join("")}</div></div>` : ""}
+      ${(p.colors || []).length ? `<div class="blk"><h3>${L.color}</h3><div class="opts">${p.colors.map(c => `<button class="opt color ${inStock && c === pdp.color ? "on" : ""}" data-v="${c}" ${inStock ? "" : "disabled"}>${c}</button>`).join("")}</div></div>` : ""}
+      <div class="blk"><h3>${L.qty}</h3><div class="pqty"><button data-d="-1">-</button><span>${pdp.qty}</span><button data-d="1">+</button></div></div>
+      <button class="buy" ${inStock ? "" : "disabled"}>${inStock ? L.add : L.soldOut}</button>
+      <div class="acc">${info}</div>
+    </div>`;
+  $("pdp").querySelectorAll("img").forEach(hideBroken);
+  $("pdp").querySelectorAll(".sz").forEach(b => b.onclick = () => { pdp.size = +b.dataset.v; renderProduct(slug); });
+  $("pdp").querySelectorAll(".color:not(:disabled)").forEach(b => b.onclick = () => { pdp.color = b.dataset.v; renderProduct(slug); });
+  $("pdp").querySelectorAll(".pqty button").forEach(b => b.onclick = () => { pdp.qty = Math.max(1, pdp.qty + +b.dataset.d); renderProduct(slug); });
+  $("pdp").querySelector(".buy").onclick = () => addToCart(slug, sizesOf(p).length ? pdp.size : null, pdp.qty, pdp.color);
+  document.title = p.name.toUpperCase() + " — MEMORA";
+}
+function updateItem(i, change) {
+  Object.assign(cart[i], change);
+  if (cart[i].qty < 1) cart.splice(i, 1);
+  mergeCart(); saveCart(); renderCart();
+}
+function renderCart() {
+  const n = cart.reduce((a, i) => a + i.qty, 0);
+  $("count").hidden = !n; $("count").textContent = n;
+  const body = $("cartBody");
+  $("cartFoot").hidden = !n;
+  if (!n) {
+    body.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><p>${T[lang].emptyCart}</p></div>`;
+    return;
+  }
+  body.innerHTML = "";
+  cart.forEach((it, idx) => {
+    const p = prod(it.slug), d = document.createElement("div");
+    d.className = "item";
+    d.innerHTML = `<div class="th"><img src="${imgMain(p)}" alt=""></div>
+      <div>
+        <h3>${p.name}</h3>
+        <p class="pr">${fmt(p.price)}${it.color ? " · " + it.color : ""}</p>
+        <div class="row">
+          ${it.size !== null ? `<select aria-label="${T[lang].size}">${sizesOf(p).map(z => `<option value="${z}" ${z === it.size ? "selected" : ""}>${T[lang].size} ${z}</option>`).join("")}</select>` : ""}
+          <div class="qty"><button aria-label="-">−</button><span>${it.qty}</span><button aria-label="+">+</button></div>
+          <button class="rm">${T[lang].remove}</button>
+        </div>
+      </div>`;
+    hideBroken(d.querySelector("img"));
+    const sel = d.querySelector("select");
+    if (sel) sel.onchange = () => updateItem(idx, { size: +sel.value });
+    const [minus, plus] = d.querySelectorAll(".qty button");
+    minus.onclick = () => updateItem(idx, { qty: it.qty - 1 });
+    plus.onclick = () => updateItem(idx, { qty: it.qty + 1 });
+    d.querySelector(".rm").onclick = () => updateItem(idx, { qty: 0 });
+    body.appendChild(d);
+  });
+  $("cartTotal").textContent = fmt(cart.reduce((a, i) => a + i.qty * prod(i.slug).price, 0));
+}
+function checkout() {
+  const lines = cart.map(i => {
+    const p = prod(i.slug);
+    return `- ${p.name.toUpperCase()}${i.size !== null ? `, ${T[lang].orderSize} ${i.size}` : ""}${i.color ? `, ${i.color}` : ""} × ${i.qty} : ${fmt(p.price * i.qty)}`;
+  });
+  const total = fmt(cart.reduce((a, i) => a + i.qty * prod(i.slug).price, 0));
+  window.open(wa(`${T[lang].orderIntro}\n${lines.join("\n")}\n\n${T[lang].orderTotal} : ${total}`), "_blank", "noopener");
+}
+
+/* ---------- Supabase ---------- */
+async function sb(table, query) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
+    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
+  });
+  if (!r.ok) throw new Error(`${table}: ${r.status}`);
+  return r.json();
+}
+async function loadRemote() {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
+  try {
+    const [prods, slides, info] = await Promise.all([
+      sb("products", "select=*&active=eq.true&order=sort_order.asc"),
+      sb("editorial_slides", "select=*&active=eq.true&order=sort_order.asc"),
+      sb("site_info", "select=*"),
+    ]);
+    if (prods.length) PRODUCTS = prods.map(r => ({
+      slug: r.slug, name: r.name, type: r.type, price: r.price,
+      image: r.image, hover: r.hover_image, gallery: r.gallery,
+      sizes: r.sizes && r.sizes.length ? r.sizes : null, colors: r.colors || [],
+      inStock: r.in_stock, featured: r.featured,
+      desc: { fr: r.description_fr || "", en: r.description_en || r.description_fr || "" },
+    }));
+    if (slides.length) EDITORIAL = slides.map(r => ({ image: r.image, title: r.title || "", credit: r.credit || "" }));
+    info.forEach(r => { INFO[r.key] = { fr: r.fr || "", en: r.en || r.fr || "" }; });
+    cart = cart.filter(i => PRODUCTS.some(p => p.slug === i.slug));
+    pdp = null;
+    buildCarousel(); applyLang(); route();
+  } catch (e) {
+    console.warn("Supabase unavailable, using built-in data.", e);
+  }
+}
+
+buildCarousel();
+applyLang();
+route();
+loadRemote();
+</script>
+</body>
+</html>
