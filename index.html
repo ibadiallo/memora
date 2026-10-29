@@ -7,8 +7,8 @@
 <meta name="description" content="Memora — abayas et voiles haut de gamme. L’œuvre d’art de la modestie.">
 <meta property="og:title" content="MEMORA">
 <meta property="og:description" content="Unforgettable • High-end • Modestwear">
-<meta property="og:image" content="images/products/jannah-1.jpg">
-<link rel="icon" type="image/png" href="images/favicon.png">
+<meta property="og:image" content="jannah-1.jpg">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,700;1,800&family=Montserrat:wght@100;300;400;500;600&display=swap" rel="stylesheet">
@@ -569,7 +569,7 @@
 <footer>
   <div class="foot">
     <div>
-      <img class="mark" src="images/logo.png" alt="Memora logo">
+      <img class="mark" src="logo.png" alt="Memora logo">
       <a class="logo" href="#/">MEMORA</a>
       <p class="motto" data-i18n="motto">L’essence du luxe modeste.</p>
     </div>
@@ -721,8 +721,10 @@ let lang = "fr", filter = "all", current = 0;
 const fmt = n => n.toLocaleString("en-US") + " CFA";
 const wa = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 const hideBroken = img => img.onerror = () => img.remove();
-const imgMain = p => p.image || `images/products/${p.slug}-1.jpg`;
-const imgHover = p => p.hover || `images/products/${p.slug}-2.jpg`;
+// Photos live at the root of the repo: any local path is reduced to its file name.
+const asset = u => !u || /^(https?:|data:)/.test(u) ? u : u.split("/").pop();
+const imgMain = p => asset(p.image || `${p.slug}-1.jpg`);
+const imgHover = p => asset(p.hover || `${p.slug}-2.jpg`);
 
 function renderGrid() {
   const feat = PRODUCTS.filter(p => p.featured);
@@ -761,7 +763,7 @@ function buildCarousel() {
   EDITORIAL.forEach((s, i) => {
     const d = document.createElement("div");
     d.className = "slide";
-    d.innerHTML = `<img src="${s.image}" alt="${s.title}"><div class="cap"><strong>${s.title}</strong><span>${s.credit}</span></div>`;
+    d.innerHTML = `<img src="${asset(s.image)}" alt="${s.title}"><div class="cap"><strong>${s.title}</strong><span>${s.credit}</span></div>`;
     hideBroken(d.querySelector("img"));
     d.onclick = () => { if (d.classList.contains("prev")) go(-1); if (d.classList.contains("next")) go(1); };
     stage.appendChild(d);
@@ -894,7 +896,7 @@ function renderProduct(slug) {
     INFO.delivery[lang] && `<details><summary>${L.delivery}</summary><p>${INFO.delivery[lang]}</p></details>`,
   ].filter(Boolean).join("");
   $("pdp").innerHTML = `
-    <div class="gallery">${gallery.map((g, i) => `<div><img src="${g}" alt="${p.name.toUpperCase()} ${i}" ${i ? 'loading="lazy"' : ""}></div>`).join("")}</div>
+    <div class="gallery">${gallery.map((g, i) => `<div><img src="${asset(g)}" alt="${p.name.toUpperCase()} ${i}" ${i ? 'loading="lazy"' : ""}></div>`).join("")}</div>
     <div class="info">
       <span class="kicker">${p.name}</span>
       <h1>${p.name.toUpperCase()}</h1>
