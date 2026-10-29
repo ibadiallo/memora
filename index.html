@@ -604,10 +604,10 @@
 /* ============ EDIT HERE ============ */
 const WHATSAPP = "221781042922";
 
-// Supabase (Project Settings → API). The anon key is public by design: the tables are read-only for visitors.
+// Supabase (Project Settings → API Keys). Use the publishable (or legacy anon) key: it is public by design, visitors can only read.
 // Leave both empty to use the built-in data below instead.
-const SUPABASE_URL = "";
-const SUPABASE_ANON_KEY = "";
+const SUPABASE_URL = "https://kmrmeewhrpzxgwqdzuho.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_EHC6CiJT2l2pDlpzZrvqZg_X8f5TpDL";
 
 // Built-in data, used when Supabase isn't configured or can't be reached.
 // Images default to images/products/<slug>-1.jpg (main) and <slug>-2.jpg (hover).
@@ -964,7 +964,7 @@ function checkout() {
 /* ---------- Supabase ---------- */
 async function sb(table, query) {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
-    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
+    headers: { apikey: SUPABASE_ANON_KEY }
   });
   if (!r.ok) throw new Error(`${table}: ${r.status}`);
   return r.json();
