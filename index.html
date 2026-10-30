@@ -380,9 +380,17 @@
     .slide.prev { transform: translate(calc(-50% - 62vw), -50%) rotateY(45deg) scale(.7); }
     .slide.next { transform: translate(calc(-50% + 62vw), -50%) rotateY(-45deg) scale(.7); }
     .arrow.l { left: 12px; } .arrow.r { right: 12px; }
-    footer { padding-top: 64px; }
+    footer { padding: 48px 24px calc(28px + env(safe-area-inset-bottom, 0px)); }
+    .foot > div:first-child { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .mark { width: 40px; height: 40px; }
+    .foot .logo { margin-top: 0; font-size: 28px; }
+    .foot .motto { flex-basis: 100%; margin-top: 4px; font-size: 9px; letter-spacing: .25em; }
+    .foot h4 { margin-top: 0; font-size: 9px; letter-spacing: .25em; }
+    .foot ul { margin-top: 16px; gap: 14px; }
+    .foot ul a { font-size: 10px; letter-spacing: .14em; white-space: nowrap; }
+    .foot ul.social { display: flex; gap: 24px; }
     .bottom { margin-top: 48px; padding-top: 32px; }
-    .foot { grid-template-columns: 1fr 1fr; gap: 56px 24px; }
+    .foot { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
     .foot > div:first-child { grid-column: 1 / -1; }
   }
   @media (prefers-reduced-motion: reduce) {
