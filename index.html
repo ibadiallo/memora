@@ -270,6 +270,21 @@
   }
   @media (max-width: 760px) { .gallery { grid-template-columns: 1fr; } }
 
+  /* ---------- Trust + WhatsApp ---------- */
+  .trust { display: flex; justify-content: center; align-items: center; gap: 8px; margin: -4px 0 28px; font-size: 11px; letter-spacing: .04em; line-height: 1.5; color: var(--ink-2); text-align: center; }
+  .trust svg { flex-shrink: 0; width: 14px; height: 14px; }
+  .cart-foot .trust { margin: 12px 0 0; font-size: 10.5px; }
+  .wa-float { position: fixed; right: 24px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 25; display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 18px 0 16px; border-radius: 26px; background: var(--ink); color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,.18); font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; transition: transform .25s, box-shadow .25s; }
+  .wa-float:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.22); }
+  .wa-float svg { width: 20px; height: 20px; }
+  @media (max-width: 860px) {
+    .wa-float { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 52px; padding: 0; justify-content: center; }
+    .wa-float span { display: none; }
+  }
+  @media (max-width: 1024px) {
+    body.on-product .wa-float { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+  }
+
   /* ---------- Search + cart ---------- */
   .icon-btn { position: relative; }
   .count { position: absolute; top: -7px; right: -9px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--ink); color: #fff; font-size: 9px; font-weight: 600; display: grid; place-items: center; }
@@ -422,8 +437,14 @@
   <div class="cart-foot" id="cartFoot">
     <div class="total"><span data-i18n="total">Total</span><strong id="cartTotal"></strong></div>
     <button class="checkout" onclick="checkout()" data-i18n="checkout">Commander sur WhatsApp</button>
+    <p class="trust" id="cartTrust"></p>
   </div>
 </aside>
+
+<a class="wa-float wa-contact" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/><path d="M9 9.5c.3 1.8 1.7 3.6 3.6 4.5l1.2-1 1.7.8-.4 1.4c-3 .2-6.4-3-6.6-6.1l1.3-.5.9 1.6z" fill="currentColor" stroke="none"/></svg>
+  <span data-i18n="writeUs">Écrivez-nous</span>
+</a>
 
 <div class="drawer" id="drawer">
   <button class="close" aria-label="Fermer" onclick="toggleDrawer(false)">&times;</button>
@@ -624,6 +645,12 @@
 /* ============ EDIT HERE ============ */
 const WHATSAPP = "221781042922";
 
+// Reassurance line under "Ajouter au panier" and in the cart. Leave "" to hide it.
+const TRUST = {
+  fr: "Livraison à Dakar sous 48h · Paiement Wave / Orange Money",
+  en: "Delivery in Dakar within 48h · Pay with Wave / Orange Money",
+};
+
 // Supabase (Project Settings → API Keys). Use the publishable (or legacy anon) key: it is public by design, visitors can only read.
 // Leave both empty to use the built-in data below instead.
 const SUPABASE_URL = "https://kmrmeewhrpzxgwqdzuho.supabase.co";
@@ -697,7 +724,7 @@ const T = {
         tip1:"Si vous souhaitez porter votre abaya avec des talons, il est recommandé de choisir une taille au-dessus de celle indiquée.",
         tip2:"Si vous préférez une abaya légèrement plus longue, optez également pour une taille au-dessus.",
         tip3:"En cas de poitrine importante, merci d’en tenir compte lors du choix de votre taille.",
-        signature:"Pièces Signatures", exploreAll:"Tout explorer",
+        signature:"Pièces Signatures", exploreAll:"Tout explorer", writeUs:"Écrivez-nous",
         color:"Couleur", qty:"Quantité", soldOut:"Rupture de stock", care:"Conseils d’entretien", delivery:"Livraison & retours", seeSizes:"Voir le guide des tailles →",
         searchPh:"Rechercher un produit, une collection…", close:"Fermer", typeToSearch:"Commencez à taper pour rechercher",
         results:n => `${n} résultat${n > 1 ? "s" : ""}`, noResults:q => `Aucun résultat pour « ${q} »`,
@@ -732,7 +759,7 @@ const T = {
         tip1:"If you plan to wear your abaya with heels, we recommend choosing one size up.",
         tip2:"If you prefer a slightly longer abaya, also go one size up.",
         tip3:"If you have a larger bust, please take it into account when choosing your size.",
-        signature:"Signature Pieces", exploreAll:"Explore all",
+        signature:"Signature Pieces", exploreAll:"Explore all", writeUs:"Message us",
         color:"Colour", qty:"Quantity", soldOut:"Out of stock", care:"Care instructions", delivery:"Delivery & returns", seeSizes:"See the size guide →",
         searchPh:"Search for a product or collection…", close:"Close", typeToSearch:"Start typing to search",
         results:n => `${n} result${n > 1 ? "s" : ""}`, noResults:q => `No results for “${q}”`,
@@ -745,6 +772,7 @@ let lang = "fr", filter = "all", current = 0;
 
 const fmt = n => n.toLocaleString("en-US") + " CFA";
 const wa = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+const TRUST_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>';
 const hideBroken = img => {
   img.onerror = () => img.remove();
   if (img.classList.contains("alt")) return;
@@ -832,6 +860,7 @@ function applyLang() {
   document.querySelectorAll(".wa-contact, .wa-bag").forEach(a => a.href = wa(T[lang].hello));
   document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = T[lang][el.dataset.i18nPh]);
   renderGrid(); renderCart(); renderResults();
+  $("cartTrust").innerHTML = TRUST[lang] ? TRUST_ICON + TRUST[lang] : "";
   if (pdp && !$("page-product").hidden) renderProduct(pdp.slug);
 }
 function toggleLang() { lang = lang === "fr" ? "en" : "fr"; applyLang(); }
@@ -853,6 +882,7 @@ function route() {
   if (page === "product") renderProduct(slug);
   document.querySelectorAll(".page").forEach(p => p.hidden = p.id !== "page-" + page);
   if (page === "collection") { const m = h.match(/type=(Abaya|Voile)/); setFilter(m ? m[1] : "all"); }
+  document.body.classList.toggle("on-product", page === "product");
   if (page !== "product") document.title = "MEMORA — L’œuvre d’art de la modestie";
   window.scrollTo({ top: 0, behavior: "instant" });
   onScroll();
@@ -937,6 +967,7 @@ function renderProduct(slug) {
       ${(p.colors || []).length ? `<div class="blk"><h3>${L.color}</h3><div class="opts">${p.colors.map(c => `<button class="opt color ${inStock && c === pdp.color ? "on" : ""}" data-v="${c}" ${inStock ? "" : "disabled"}>${c}</button>`).join("")}</div></div>` : ""}
       <div class="blk"><h3>${L.qty}</h3><div class="pqty"><button data-d="-1">-</button><span>${pdp.qty}</span><button data-d="1">+</button></div></div>
       <button class="buy" ${inStock ? "" : "disabled"}>${inStock ? L.add : L.soldOut}</button>
+      ${TRUST[lang] ? `<p class="trust">${TRUST_ICON}${TRUST[lang]}</p>` : ""}
       <div class="acc">${info}</div>
     </div>
     <div class="buybar"><div><strong>${p.name.toUpperCase()}</strong><span>${fmt(p.price)}</span></div><button class="buy" ${inStock ? "" : "disabled"}>${inStock ? L.add : L.soldOut}</button></div>`;
