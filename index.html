@@ -790,6 +790,7 @@
   .intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: var(--cream); transition: opacity .9s ease, visibility .9s; }
   .intro img { width: 76px; opacity: 0; animation: introIn 1s cubic-bezier(.2,.6,.2,1) .1s forwards; }
   .intro.done { opacity: 0; visibility: hidden; }
+  .intro[hidden] { display: none; }
   @keyframes introIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
   /* reveal on scroll */
@@ -1751,8 +1752,9 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 (function intro() {
   let seen = false;
   try { seen = sessionStorage.getItem("memora-intro") === "1"; sessionStorage.setItem("memora-intro", "1"); } catch (e) {}
-  if (seen || reduceMotion) return;
-  const el = $("intro"); el.hidden = false;
+  const el = $("intro");
+  if (seen || reduceMotion) { el.remove(); return; }
+  el.hidden = false;
   setTimeout(() => { el.classList.add("done"); setTimeout(() => el.remove(), 1000); }, 1300);
 })();
 
